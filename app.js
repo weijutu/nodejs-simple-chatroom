@@ -17,7 +17,7 @@ io.sockets.on('connection', function(socket) {
 		if (nicknames.indexOf(data) != -1) {
 
 		} else {
-			socket.emit('chat', 'SERVER', data);
+			socket.emit('chat', 'SERVER', '歡迎光臨 ' + data);
 
 			socket.nickname = data;
 			nicknames.push(socket.nickname);
@@ -37,7 +37,7 @@ io.sockets.on('connection', function(socket) {
 
 	socket.on('disconnect', function(data){
 		if (!socket.nickname) return;
-		io.sockets.emit('chat', 'SERVER', socket.nickname + ' has left the building');
+		io.sockets.emit('chat', 'SERVER', socket.nickname + ' 離開了聊天室～');
 		nicknames.splice(nicknames.indexOf(socket.nickname), 1);
 		updateNicknames();
 	});
